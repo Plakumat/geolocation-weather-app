@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Exo", sans-serif; }
+
+.blurBackground {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /*-webkit-filter: blur(15px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);
+    background: url("static/img/blur/background-sanFransisco-blur.jpg");*/
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1; }
+
+.blurBackground .crop {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  overflow: hidden; }
+  .blurBackground .crop img {
+    width: 100%; }
+
+.childWrapper {
+  width: 350px;
+  height: 250px;
+  background-color: white;
+  position: relative;
+  margin: 0px auto;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-top: 145px;
+  box-shadow: 0px 5px 15px -5px black; }
+
+.childWrapper .labelImageOverlay {
+  background-color: rgba(0, 139, 178, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 125px;
+  text-align: center;
+  line-height: 30px;
+  color: #fff; }
+  .childWrapper .labelImageOverlay #cityName {
+    margin-top: 20px;
+    text-shadow: 0px 3px 10px black; }
+  .childWrapper .labelImageOverlay #icon {
+    width: 60px; }
+
+.childWrapper .labelImage {
+  width: 100%;
+  height: 125px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 1; }
+  .childWrapper .labelImage img {
+    width: 100%; }
+
+.childWrapper .miniBoxSection {
+  width: 100%;
+  height: 125px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  line-height: 30px;
+  color: #000; }
+  .childWrapper .miniBoxSection #temprature {
+    margin-top: 30px;
+    text-shadow: 0px 0px 2px black; }
+  .childWrapper .miniBoxSection #weatherDescription {
+    text-shadow: 0px 0px 2px black; }
+
+.loadingGif {
+  width: 20px !important; }

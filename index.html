@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Weather App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body onload="displayImage(); stabilizerLabelnBackground();">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <section class="blurBackground">
+            <div class="crop">
+                <img src="" id="canvasImage" name="canvas">
+            </div>
+        </section>
+
+        <div class="childWrapper">
+            <div class="labelImageOverlay">
+                <h1 id="cityName"><img class="loadingGif" src="static/img/loading.gif"></h1>
+                <img src="" id="icon">
+            </div>
+            <div class="labelImage">
+                <img src="" id="labelImage">
+            </div>    
+            <div class="miniBoxSection">
+                <h2 id="temprature"><img class="loadingGif" src="static/img/loading.gif"></h2>
+                <h3 id="weatherDescription"><img class="loadingGif" src="static/img/loading.gif"></h3>
+            </div>
+        </div>
+        
+        <script>
+
+            //Icon attr for loading
+            var loading = "static/img/loading.gif";
+            $('#icon').attr('src', loading);
+
+            $(document).ready(function(){
+
+                //Get Location
+                navigator.geolocation.getCurrentPosition(fine, error);
+
+                function fine(position){
+                    var latitudePos = position.coords.latitude;
+                    var longitudePos = position.coords.longitude;
+                    weather(latitudePos, longitudePos);
+                }
+
+                function error(){
+                    console.log('There is an error!');
+                }
+
+                //Get Latitude & Longitude from API
+                function weather(latitudePos, longitudePos){
+                    var apiLink = `https://fcc-weather-api.glitch.me/api/current?lat=${latitudePos}&lon=${longitudePos}`;
+
+                    $.getJSON(apiLink, function(data){
+                        console.log(data);
+                        domUpdate(data);
+                    });
+                }
+                
+
+                //DOM Manipulation
+                function domUpdate(data){
+                    var city = data.name;
+                    var temprature = Math.round(data.main.temp);
+                    var weatherDescription = data.weather[0].description;
+                    var icon = data.weather[0].icon;
+
+
+                    //Choose background color from temprature or weather description
+                    if(weatherDescription == 'clear sky'){
+                        $('.labelImageOverlay').css("background-color", "rgba(0, 139, 178, 0.7)");
+                        console.log(weatherDescription + ' ' + temprature);
+                    }
+
+                    if(weatherDescription == 'few clouds'){
+                        $('.labelImageOverlay').css("background-color", "rgba(96, 113, 158, 0.7)");
+                        console.log(weatherDescription + ' ' + temprature);
+                    }
+
+                    if(temprature <= 20){
+                        $('.labelImageOverlay').css("background-color", "rgba(96, 105, 110, 0.7)")
+                        console.log(weatherDescription + ' ' + temprature);
+                    }
+
+                    if(temprature >= 40){
+                        $('.labelImageOverlay').css("background-color", "rgba(182, 183, 82, 0.9)")
+                        console.log(weatherDescription + ' ' + temprature);
+                    }
+
+                    $('#cityName').html(city);
+                    $('#temprature').html(temprature + `&#176;`);
+                    $('#weatherDescription').html(weatherDescription);
+                    $('#icon').attr('src', icon);
+                }
+
+            });
+
+            //Random blue background & label image
+            var randomBackgroundImages = [
+                "static/img/blur/background-sanFransisco-blur.jpg",
+                "static/img/blur/montreal-blur-2.jpg",
+                "static/img/blur/montreal-blur.jpg",
+                "static/img/blur/new-york-blur.jpg"
+            ];
+            
+            //Display random background images with src
+            function displayImage(){
+                var num = Math.floor(Math.random()*4);
+                document.canvas.src = randomBackgroundImages[num];
+            }
+
+            //Blur background and label image comparison
+            function stabilizerLabelnBackground(){
+                var _backgroundImage = document.getElementById("canvasImage");
+                var _labelImage = document.getElementById("labelImage");
+
+                if(_backgroundImage.getAttribute("src") == "static/img/blur/background-sanFransisco-blur.jpg"){
+                    _labelImage.src = "static/img/background-sanFransisco.jpg";
+                }
+
+                if(_backgroundImage.getAttribute("src") == "static/img/blur/montreal-blur-2.jpg"){
+                    _labelImage.src = "static/img/montreal-2.jpg";
+                }
+
+                if(_backgroundImage.getAttribute("src") == "static/img/blur/montreal-blur.jpg"){
+                    _labelImage.src = "static/img/montreal.jpg";
+                }
+                
+                if(_backgroundImage.getAttribute("src") == "static/img/blur/new-york-blur.jpg"){
+                    _labelImage.src = "static/img/new-york.jpg";
+                }
+            }
+
+        </script>
+    
+    </body>
+</html>

@@ -1,0 +1,127 @@
+$font-name: 'Exo', sans-serif;
+$child-wrap-shadow: 0px 5px 15px -5px black;
+$city-name-shadow: 0px 3px 10px black;
+$temp-desc-shadow: 0px 0px 2px black;
+$label-overlay: rgba(0, 139, 178, 0.7);
+$fwd: 100%;
+$fvh: 100vh;
+$abs: absolute;
+$rel: relative;
+$nrp: no-repeat;
+$inh: inherit;
+$hdn: hidden;
+$zpxa: 0px auto;
+
+*{
+    margin:0;
+    padding:0;
+    font-family: $font-name;
+}
+
+.blurBackground{
+    width: $fwd;
+    height: $fvh;
+    position: $abs;
+    top:0;
+    left:0;
+    /*-webkit-filter: blur(15px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);
+    background: url("static/img/blur/background-sanFransisco-blur.jpg");*/
+    background-size:cover;
+    background-repeat: $nrp;
+    z-index: 1;
+}
+
+.blurBackground{
+    .crop {
+        width: $inh;
+        height: $inh;
+        position: $abs;
+        top:0;
+        left:0;
+        z-index:3;
+        overflow: $hdn;
+
+        img{
+            width: $fwd;
+        }
+    }
+}
+
+.childWrapper{
+    width:350px;
+    height: 250px;
+    background-color: white;
+    position:$rel;
+    margin: $zpxa;
+    z-index: 2;
+    overflow: $hdn;
+    border-radius: 5px;
+    margin-top:145px;
+    box-shadow: $child-wrap-shadow;
+}
+
+.childWrapper{
+        .labelImageOverlay{
+            background-color: $label-overlay;
+            position: $abs;
+            top:0;
+            left:0;
+            z-index:2;
+            width: $fwd;
+            height:125px;
+            text-align:center;
+            line-height:30px;
+            color: #fff;
+
+            #cityName{
+                margin-top:20px;
+                text-shadow: $city-name-shadow;
+            }
+
+            #icon{
+                width:60px;
+            }
+
+        }
+
+        .labelImage{
+            width: $fwd;
+            height:125px;
+            position:$abs;
+            top:0;
+            left:0;
+            overflow: $hdn;
+            z-index:1;
+
+            img{
+                width:$fwd;
+            }
+        }
+    
+        .miniBoxSection{
+            width: $fwd;
+            height: 125px;
+            position: $abs;
+            bottom:0;
+            left:0;
+            text-align:center;
+            line-height: 30px;
+            color:#000;
+
+            #temprature{
+                margin-top:30px;
+                text-shadow: $temp-desc-shadow;
+            }
+
+            #weatherDescription{
+                text-shadow: $temp-desc-shadow;
+            }
+        }
+    }
+
+
+.loadingGif{width:20px !important}
