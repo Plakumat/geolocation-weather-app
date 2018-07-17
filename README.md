@@ -12,7 +12,7 @@ with the following this steps from here [GulpJS](https://gulpjs.com).
 Don't forget to run with NodeJS.
 If you haven't NodeJS on your computer, you can download from here [NodeJS](https://nodejs.org).
 
-## Create an http-server
+## Create a http-server
 Open your terminal and type:
 ```sh
 http-server
