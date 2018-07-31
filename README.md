@@ -17,3 +17,4 @@ Open your terminal and type:
 ```sh
 http-server
 ```
+![app-image](https://github.com/Plakumat/geolocation-weather-app/blob/master/app-image.PNG)
